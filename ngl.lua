@@ -15,7 +15,7 @@ function ngl.AngleVectors(angles)
    return angles:Forward()
 end
 
-local function GetAimPosition(localplayer, weapon)
+function ngl.GetAimPosition(localplayer, weapon)
    local class = localplayer:GetPropInt("m_PlayerClass", "m_iClass")
    local item_def_idx = weapon:GetPropInt("m_Item", "m_iItemDefinitionIndex")
 
