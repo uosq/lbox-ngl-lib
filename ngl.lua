@@ -4,8 +4,10 @@ local ngl = {}
 ngl.HitboxBoneIndex = { Head = 1, Neck = 2, Pelvis = 4, Body = 5, Chest = 7, Feet = 11 }
 ngl.M_RADPI = 57.295779513082
 
-local SpecialWeaponIndexes = {
-   SYDNEY_SLEEPER = 230, AMBASSADOR = 61, FESTIVE_AMBASSADOR = 1006
+ngl.SpecialWeaponIndexes = {
+   [230] = "SYDNEY_SLEEPER",
+   [61] = "AMBASSADOR",
+   [1006] = "FESTIVE AMBASSADOR",
 }
 
 ---@param angles EulerAngles
@@ -13,18 +15,15 @@ function ngl.AngleVectors(angles)
    return angles:Forward()
 end
 
---- Returns the hitbox bone index that should be used
----@param localplayer Entity
----@param weapon Entity
-function ngl.GetAimPosition(localplayer, weapon)
+local function GetAimPosition(localplayer, weapon)
    local class = localplayer:GetPropInt("m_PlayerClass", "m_iClass")
-   local item_def_idx = weapon:GetPropInt("m_iItemDefinitionIndex")
+   local item_def_idx = weapon:GetPropInt("m_Item", "m_iItemDefinitionIndex")
 
    if class == TF2_Sniper then
-      if SpecialWeaponIndexes[item_def_idx] then return ngl.HitboxBoneIndex.Body end
+      if ngl.SpecialWeaponIndexes[item_def_idx] then return ngl.HitboxBoneIndex.Body end
       return localplayer:InCond(E_TFCOND.TFCond_Zoomed) and ngl.HitboxBoneIndex.Head or ngl.HitboxBoneIndex.Body
    elseif class == TF2_Spy then
-      if SpecialWeaponIndexes[item_def_idx] then
+      if ngl.SpecialWeaponIndexes[item_def_idx] then
          return weapon:GetWeaponSpread() > 0 and ngl.HitboxBoneIndex.Body or ngl.HitboxBoneIndex.Head
       end
    end
