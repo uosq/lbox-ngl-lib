@@ -358,7 +358,7 @@ function ngl.RemapValClamped(val, A, B, C, D)
    return C + (D - C) * cVal
 end
 
---- ~~pasted~~ borrowed from lnxlib
+--- ~~pasted~~ borrowed from lnxlib \
 -- Returns the projectile speed and gravity of the weapon
 ---@param weapon Entity
 ---@return table<number, number>?
@@ -399,6 +399,15 @@ function ngl.GetProjectileInfo(weapon)
    end
 
    return projInfo[defIndex] or projInfoID[id]
+end
+
+---@param entity Entity
+function ngl.GetEntityCenter(entity)
+   local Mins, Maxs = entity:GetMins(), entity:GetMaxs()
+   local origin = entity:GetAbsOrigin()
+   local offset = (Mins + Maxs) * 0.5
+   local center = origin + offset
+   return center
 end
 
 return ngl
