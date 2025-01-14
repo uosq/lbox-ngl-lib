@@ -395,7 +395,7 @@ function ngl.GetProjectileInfo(weapon)
       [E_WeaponBaseID.TF_WEAPON_CROSSBOW] = { 2400, 0.2 },                -- Crusader's Crossbow
       [E_WeaponBaseID.TF_WEAPON_SHOTGUN_BUILDING_RESCUE] = { 2400, 0.2 }, -- Rescue Ranger
       [E_WeaponBaseID.TF_WEAPON_CANNON] = { 1453.9, 0.4 },                -- Loose Cannon
-      [E_WeaponBaseID.TF_WEAPON_PARTICLE_CANNON] = { 1100, 0 },           -- Bison ?
+      [E_WeaponBaseID.TF_WEAPON_RAYGUN] = { 1100, 0 },                    -- Bison
    }
    local id = weapon:GetWeaponID()
    local defIndex = weapon:GetPropInt("m_iItemDefinitionIndex")
